@@ -18,7 +18,83 @@
     </header>
 
     <main class="my-5">
-        
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{ asset('images/banner1.jpg')}}" class="border border-5 w-50" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('images/banner2.jpg')}}" class="border border-5 w-75" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('images/banner3.jpg')}}" class="border border-5 w-75" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card text-success-emphasis bg-success mx-3 my-4">
+                        <div class="card-header">
+                            <h4 class="p-1">
+                                Bienvenido a nuestra guardería
+                            </h4>
+                        </div>
+                        <div class="container text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">El mejor espacio para tu pequeño</h5>
+                                <p class="card-text">En Guarderías Gigi trabajamos para que nuestros bebes, niños y niñas se desarrollen física y emocionalmente en un ambiente seguro, sano, afectivo y divertido.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5">
+            <!-- Inicio de la seccion 2 -->
+            <div class="container text-center mt-5">
+                <div class="row">
+                    <div class="col">
+                        <div class="card border-success mb-3 w-5 h-5">
+                        <img src="{{ asset('images/img.jpg')}}" class="mx-auto w-100" alt="...">
+                            <div class="card-header">SUS PRIMEROS PASOS</div>
+                            <div class="card-body">
+                                <p class="card-text">Las primeras etapas de la vida son fundamentales para un buen desarrollo en el futuro.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-success mb-3 w-5 h-5">
+                        <img src="{{ asset('images/social.jpg')}}" class="mx-auto w-100" alt="...">
+                            <div class="card-header">SU PREPARACIÓN</div>
+                            <div class="card-body">
+                                <p class="card-text">Aprendizaje significativo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-success mb-3 w-5 h-5">
+                            <img src="{{ asset('images/danza.jpg')}}" class="mx-auto w-100" alt="...">
+                            <div class="card-header">SU CRECIMIENTO</div>
+                            <div class="card-body">
+                                <p class="card-text">A partir de las necesidades del niño atendiendo cada paso en su proceso evolutivo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-5">
+
+        </div>
     </main>
 
     @include('components.footer')
