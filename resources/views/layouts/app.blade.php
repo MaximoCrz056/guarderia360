@@ -16,6 +16,15 @@
 
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
+    <script>
+        import {
+            createClient
+        } from '@supabase/supabase-js'
+
+        const supabaseUrl = 'https://rxlomkivxrqpdzfiuwya.supabase.co'
+        const supabaseKey = process.env.SUPABASE_KEY
+        const supabase = createClient(supabaseUrl, supabaseKey)
+    </script>
 </head>
 
 <body class="bg-success-subtle">
@@ -31,7 +40,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -41,23 +50,23 @@
                         @endif
                         @else
                         <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav justify-center">
-                        <li class="nav-item">
-                            <a class="nav-link mx-5" href="{{ route('home') }}">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-5" href="{{ route('employees.index') }}">Personal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-5" href="{{ route('family.index') }}">Infantes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-5" href="{{ route('services.index') }}">Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-5" href="{{ route('posts.index') }}">Avisos</a>
-                        </li>
-                    </ul>
+                        <ul class="navbar-nav justify-center">
+                            <li class="nav-item">
+                                <a class="nav-link mx-5" href="{{ route('home') }}">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-5" href="{{ route('employees.index') }}">Personal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-5" href="{{ route('family.index') }}">Infantes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-5" href="{{ route('services.index') }}">Servicios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-5" href="{{ route('posts.index') }}">Avisos</a>
+                            </li>
+                        </ul>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
