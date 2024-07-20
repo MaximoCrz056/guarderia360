@@ -1,0 +1,38 @@
+name: Deploy Laravel to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0' # Ajusta según la versión de PHP que estés usando
+
+      - name: Install Composer
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run tests
+        run: php artisan test
+
+      - name: Deploy to VPS
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DEPLOYMENT_USER: ${{ secrets.DEPLOYMENT_USER }}
+          VPS_IP: ${{ secrets.VPS_IP }}
+        run: |
+          ssh -o StrictHostKeyChecking=no $DEPLOYMENT_USER@$VPS_IP << 'EOF'
+            cd /path/to/your/project
+            git pull origin main
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan config:cache
+          EOF
