@@ -1,24 +1,23 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Update') }} Child
+    {{ __('Create') }} Child
 @endsection
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
+        <div class="row">
             <div class="col-md-12">
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} Child</span>
+                        <span class="card-title">{{ __('Create') }} Child</span>
                     </div>
-                    <div class="card-body bg-white">
-                        <form method="POST" action="{{ route('children.update', $child->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('family.store') }}" role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('child.form')
+                            @include('family.form')
 
                         </form>
                     </div>

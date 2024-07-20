@@ -23,14 +23,14 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     
-    protected $perPage = 20;
+    protected $perPage = 5;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name', 'middlename', 'lastname', 'jobtitle', 'status', 'photo'];
+    protected $fillable = ['id', 'name', 'middlename', 'lastname', 'jobtitle', 'status', 'photo'];
 
 
 }

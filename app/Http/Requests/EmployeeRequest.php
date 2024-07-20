@@ -27,7 +27,7 @@ class EmployeeRequest extends FormRequest
 			'lastname' => 'required|string',
 			'jobtitle' => 'required|string',
 			'status' => 'required|string',
-			'photo' => 'string',
+			'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',    
         ];
     }
 }

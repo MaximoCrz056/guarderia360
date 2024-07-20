@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChildRequest extends FormRequest
+class ServiceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,15 +23,10 @@ class ChildRequest extends FormRequest
     {
         return [
 			'name' => 'required|string',
-			'middlename' => 'required|string',
-			'lastname' => 'required|string',
-			'birthdate' => 'required',
-			'parent_id' => 'required',
-			'photo' => 'required|string',
-			'gender' => 'required|string',
-			'height' => 'required',
-			'weight' => 'required',
-			'description' => 'string',
+			'description' => 'required|string',
+			'price' => 'required',
+			'status' => 'required|string',
+			'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

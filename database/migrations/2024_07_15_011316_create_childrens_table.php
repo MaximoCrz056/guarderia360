@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('children', function (Blueprint $table) {
+        Schema::create('childrens', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tutor_id')->constrained('tutors')->onDelete('cascade');
             $table->string('name');
             $table->string('middlename');
             $table->string('lastname');
             $table->date('birthdate');
-            //$table->foreignId('parent_id')->constrained('parents')->onDelete('cascade'); // TODO: add foreign key
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('gender');
-            $table->double('height');
-            $table->double('weight');
-            $table->string('description')->nullable();
+            $table->integer('height');
+            $table->integer('weight');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('children');
+        Schema::dropIfExists('childrens');
     }
 };

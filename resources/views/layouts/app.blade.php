@@ -11,18 +11,19 @@
     <title>{{ config('app.name', 'Guarderia360') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-success-subtle">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-success shadow-sm mb-5">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('images/logo.png')}}" width="75" height="75" alt="logo">
+                <a class="navbar-brand mx-5" href="{{ url('/') }}">
                     {{ config('app.name', 'Guarderia360') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -37,21 +38,24 @@
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
                         @endif
                         @else
                         <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav justify-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Inicio</a>
+                            <a class="nav-link mx-5" href="{{ route('home') }}">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('employees.index') }}">Personal</a>
+                            <a class="nav-link mx-5" href="{{ route('employees.index') }}">Personal</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('children.index') }}">Infantes</a>
+                            <a class="nav-link mx-5" href="{{ route('family.index') }}">Infantes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-5" href="{{ route('services.index') }}">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-5" href="{{ route('posts.index') }}">Avisos</a>
                         </li>
                     </ul>
                         <li class="nav-item dropdown">
@@ -60,9 +64,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('register') }}">Registrar Cuenta</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Cerrar sesión') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

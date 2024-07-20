@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmployeeRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class EmployeeController extends Controller
@@ -19,7 +20,7 @@ class EmployeeController extends Controller
         $employees = Employee::paginate();
 
         return view('employee.index', compact('employees'))
-            ->with('i', ($request->input('page', 1) - 1) * $employees->perPage());
+            ->with('i', ($request->input('Pagina', 1) - 1) * $employees->perPage());
     }
 
     /**
@@ -37,10 +38,17 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request): RedirectResponse
     {
-        Employee::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('public/photos');
+            $data['photo'] = Storage::url($path);
+        }
+
+        Employee::create($data);
 
         return Redirect::route('employees.index')
-            ->with('success', 'Employee created successfully.');
+            ->with('success', 'Se ha creado el empleado correctamente');
     }
 
     /**
@@ -68,10 +76,22 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeRequest $request, Employee $employee): RedirectResponse
     {
-        $employee->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            // Eliminar la foto anterior si existe
+            if ($employee->photo) {
+                Storage::delete(str_replace('/storage', 'public', $employee->photo));
+            }
+
+            $path = $request->file('photo')->store('public/photos');
+            $data['photo'] = Storage::url($path);
+        }
+
+        $employee->update($data);
 
         return Redirect::route('employees.index')
-            ->with('success', 'Employee updated successfully');
+            ->with('success', 'Se actualizaron los datos del empleado correctamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -79,6 +99,6 @@ class EmployeeController extends Controller
         Employee::find($id)->delete();
 
         return Redirect::route('employees.index')
-            ->with('success', 'Employee deleted successfully');
+            ->with('success', 'Se ha eliminado el empleado correctamente');
     }
 }
