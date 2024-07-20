@@ -16,15 +16,6 @@
 
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
-    <script>
-        import {
-            createClient
-        } from '@supabase/supabase-js'
-
-        const supabaseUrl = 'https://rxlomkivxrqpdzfiuwya.supabase.co'
-        const supabaseKey = process.env.SUPABASE_KEY
-        const supabase = createClient(supabaseUrl, supabaseKey)
-    </script>
 </head>
 
 <body class="bg-success-subtle">
